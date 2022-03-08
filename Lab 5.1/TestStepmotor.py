@@ -9,20 +9,20 @@ def blink(pin1,pin2,pin3,pin4):
     GPIO.output(pin1, 1)
     GPIO.setup(pin2, GPIO.OUT)
     GPIO.output(pin2, 1)
-    time.sleep(0.01)
+    time.sleep(0.003)
     GPIO.output(pin1, 0)
     GPIO.setup(pin3, GPIO.OUT)
     GPIO.output(pin3, 1)
-    time.sleep(0.01)
+    time.sleep(0.003)
     GPIO.output(pin2, 0)
     GPIO.setup(pin4, GPIO.OUT)
     GPIO.output(pin4, 1)
-    time.sleep(0.01)
+    time.sleep(0.003)
     GPIO.output(pin3, 0)
     GPIO.output(pin1, 1)
-    time.sleep(0.01)
+    time.sleep(0.003)
     GPIO.output(pin4, 0)
-    
+        
 
 #main program blink #GPIO24, #GPIO23, #GPIO22, #GPIO27 infinity
 try:
