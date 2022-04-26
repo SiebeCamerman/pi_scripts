@@ -32,7 +32,7 @@ def pumpLight():
     while True:
         #relay's
         t = time.localtime()
-        current_time = time.strftime("%H", t)
+        current_time = time.strftime("%M", t)
         print(current_time)
         if (GPIO.input (23)==0): #input low active
             if (toggleLight == 1 and alreadyPressed == 1):
