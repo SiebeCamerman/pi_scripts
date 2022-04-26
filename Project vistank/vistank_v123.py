@@ -26,8 +26,9 @@ def pumpLight():
     #alreadyPressed = 1
     while True:
         #relay's
-	toggleLight = 0
-	alreadyPressed = 1
+        toggleLight = 0
+        alreadyPressed = 1
+        
         if (GPIO.input (27)==1): #input low active
             GPIO.output (24, 1)
             time.sleep (0.3) # anti bouncing
