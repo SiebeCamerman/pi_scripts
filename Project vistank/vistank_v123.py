@@ -21,20 +21,13 @@ GPIO.setup(17, GPIO.OUT) # GPIO 17 output ultrasonic sensor
 
 tankDepth = 30
 
+
 def pumpLight():
-    #togglePump = 0
     toggleLight = 0
 
     alreadyPressed = 1
     while True:
         #relay's
-        
-        if (GPIO.input (27)==1): #input low active
-            GPIO.output (24, 1)
-            time.sleep (0.3) # anti bouncing
-        else:
-            GPIO.output(24, 0)
-            time.sleep (0.3) # anti bouncing
 
         if (GPIO.input (23)==0): #input low active
             if (toggleLight == 1 and alreadyPressed == 1):
@@ -80,6 +73,7 @@ def stepMotor():
             motorRechts()
 
 def ultrasonicSensor():
+    togglePump = 0
     while True:
         #ultrasonic sensor
         GPIO.output(17, 1)
@@ -99,9 +93,19 @@ def ultrasonicSensor():
         distance = 17000 * timePassed
         print("Waterdiepte in cm: "+str(tankDepth-distance))
         time.sleep(0.1)
+        if (togglePump == 0):
+            if (GPIO.input (27)==1): #input low active
+                GPIO.output (24, 1)
+                time.sleep (0.3) # anti bouncing
+            else:
+                GPIO.output(24, 0)
+                time.sleep (0.3) # anti bouncing
+
         if ((tankDepth-distance)>20):
+            togglePump = 1
             GPIO.output (24, 1)
         else:
+            togglePump = 0
             GPIO.output (24, 0)
 
 #create two new threads
