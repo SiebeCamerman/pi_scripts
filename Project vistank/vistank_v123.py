@@ -29,16 +29,18 @@ def pumpLight():
     timer = 0
 
     alreadyPressed = 1
+    current_time = ""
     while True:
         #relay's
         current_time = time.strftime("%M", time.localtime())
+        
+        if (current_time == "06" and timer == 0):
+            timer = 1
+            GPIO.output (22, 1)
+        if (current_time == "06" and timer == 1):
+            time = 0
+            GPIO.output (22, 0)
         print(current_time)
-        #if (current_time == 6 and timer == 0):
-        #    timer = 1
-        #    GPIO.output (22, 1)
-        #if (current_time == 6 and timer == 1):
-        #    time = 0
-        #    GPIO.output (22, 0)
 
         if (GPIO.input (23)==0): #input low active
             if (toggleLight == 1 and alreadyPressed == 1 and time == 0):
