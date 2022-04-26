@@ -109,10 +109,10 @@ def ultrasonicSensor():
 
         if ((tankDepth-distance)<20 and togglePump == 0):
             toggleSensor = 1
-            GPIO.output (24, 1)
+            GPIO.output (24, 0)
         if ((tankDepth-distance)>20 and toggleSensor == 1):
             toggleSensor = 0
-            GPIO.output (24, 0)
+            GPIO.output (24, 1)
 
 #create two new threads
 tpumpLight = threading.Thread(target=pumpLight)
