@@ -33,7 +33,7 @@ def pumpLight():
     while True:
         #relay's
         current_time = time.strftime("%M", time.localtime())
-        if (current_time == "13" and time == 0):
+        if (current_time == "14" and timer == 0):
             print("ja")
         #if (current_time == "06" and timer == 0):
         #    timer = 1
