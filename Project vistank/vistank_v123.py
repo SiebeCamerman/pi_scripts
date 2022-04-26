@@ -74,6 +74,8 @@ def stepMotor():
 
 def ultrasonicSensor():
     togglePump = 0
+    toggleSensor = 0
+
     while True:
         #ultrasonic sensor
         GPIO.output(17, 1)
@@ -93,19 +95,21 @@ def ultrasonicSensor():
         distance = 17000 * timePassed
         print("Waterdiepte in cm: "+str(tankDepth-distance))
         time.sleep(0.1)
-        if (togglePump == 0):
-            if (GPIO.input (27)==1): #input low active
-                GPIO.output (24, 1)
-                time.sleep (0.3) # anti bouncing
-            else:
-                GPIO.output(24, 0)
-                time.sleep (0.3) # anti bouncing
 
-        if ((tankDepth-distance)>20):
+        if (GPIO.input (27)==1 and toggleSensor == 0): #input low active
             togglePump = 1
             GPIO.output (24, 1)
-        else:
+            time.sleep (0.3) # anti bouncing
+        if (GPIO.input (27)==0 and togglePump == 1):
             togglePump = 0
+            GPIO.output(24, 0)
+            time.sleep (0.3) # anti bouncing
+
+        if ((tankDepth-distance)>20 and togglePump == 0):
+            toggleSensor = 1
+            GPIO.output (24, 1)
+        if ((tankDepth-distance)<20 and toggleSensor == 1):
+            toggleSensor = 0
             GPIO.output (24, 0)
 
 #create two new threads
