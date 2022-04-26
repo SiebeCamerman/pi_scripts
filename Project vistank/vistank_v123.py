@@ -19,8 +19,8 @@ GPIO.setup (25, GPIO.IN) # GPIO 25 input step motor
 GPIO.setup(18, GPIO.IN) # GPIO 18 input ultrasonic sensor
 GPIO.setup(17, GPIO.OUT) # GPIO 17 output ultrasonic sensor
 
-#GPIO.output (24,1)
-#GPIO.output (22,1)
+GPIO.output (24,1)
+GPIO.output (22,1)
 tankDepth = 30
 
 
