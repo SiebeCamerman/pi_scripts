@@ -33,8 +33,9 @@ def pumpLight():
     while True:
         #relay's
         current_time = time.strftime("%M", time.localtime())
-        if (current_time == "14" and timer == 0):
+        if (current_time == "16" and timer == 0):
             print("ja")
+            GPIO.output (22, 1)
         #if (current_time == "06" and timer == 0):
         #    timer = 1
         #    GPIO.output (22, 1)
