@@ -31,8 +31,7 @@ def pumpLight():
     alreadyPressed = 1
     while True:
         #relay's
-        t = time.localtime()
-        current_time = time.strftime("%M", t)
+        current_time = time.strftime("%M", time.localtime())
         print(current_time)
         if (current_time == 6 and timer == 0):
             timer = 1
