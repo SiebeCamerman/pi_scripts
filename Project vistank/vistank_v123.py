@@ -26,7 +26,7 @@ tankDepth = 30
 
 def pumpLight():
     toggleLight = 0
-
+    timer = 0
 
     alreadyPressed = 1
     while True:
@@ -34,13 +34,20 @@ def pumpLight():
         t = time.localtime()
         current_time = time.strftime("%M", t)
         print(current_time)
+        if (current_time == 5 and timer == 0):
+            timer = 1
+            GPIO.output (22, 1)
+        if (current_time == 5 and timer == 1):
+            time = 0
+            GPIO.output (22, 0)
+
         if (GPIO.input (23)==0): #input low active
-            if (toggleLight == 1 and alreadyPressed == 1):
+            if (toggleLight == 1 and alreadyPressed == 1 and time == 0):
                 alreadyPressed = 0
                 toggleLight = 0
                 GPIO.output (22, 1)
                 time.sleep (0.3) # anti bouncing
-            elif (toggleLight == 0 and alreadyPressed == 1):
+            elif (toggleLight == 0 and alreadyPressed == 1 and timer == 0):
                 alreadyPressed = 0
                 toggleLight = 1
                 GPIO.output(22, 0)
