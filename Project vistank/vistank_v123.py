@@ -20,7 +20,7 @@ GPIO.setup (25, GPIO.IN) # GPIO 25 input step motor
 
 
 def pumpLight():
-    togglePump = 0
+    #togglePump = 0
     toggleLight = 0
 
     alreadyPressed = 1
