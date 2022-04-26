@@ -49,6 +49,7 @@ def pumpLight():
                 alreadyPressed = 0
                 toggleLight = 0
                 GPIO.output (22, 1)
+                print('aan')
                 time.sleep (0.3) # anti bouncing
             elif (toggleLight == 0 and alreadyPressed == 1 and timer == 0):
                 alreadyPressed = 0
