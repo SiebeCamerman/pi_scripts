@@ -40,7 +40,7 @@ def pumpLight():
         #if (current_time == "06" and timer == 1):
         #    time = 0
         #    GPIO.output (22, 0)
-        #print(current_time)
+        print(current_time)
 
         if (GPIO.input (23)==0): #input low active
             if (toggleLight == 1 and alreadyPressed == 1 and time == 0):
