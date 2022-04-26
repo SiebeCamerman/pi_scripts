@@ -9,8 +9,6 @@
 import threading
 import RPi.GPIO as GPIO
 import time
-from datetime import datetime
-
 # setup in- and output
 GPIO.setmode (GPIO.BCM)
 GPIO.setup (27, GPIO.IN) # GPIO 27 input pump
@@ -25,19 +23,15 @@ GPIO.output (24,1)
 GPIO.output (22,1)
 tankDepth = 30
 
-now = datetime.now()
-
 
 def pumpLight():
     toggleLight = 0
-    time = time.time()
+
 
     alreadyPressed = 1
     while True:
         #relay's
-        current_time = now.strftime("%H:%M:%S")
-        print("Current Time =", current_time)
-        
+
         if (GPIO.input (23)==0): #input low active
             if (toggleLight == 1 and alreadyPressed == 1):
                 alreadyPressed = 0
