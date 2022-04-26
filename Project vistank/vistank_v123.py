@@ -19,8 +19,8 @@ GPIO.setup (25, GPIO.IN) # GPIO 25 input step motor
 GPIO.setup(18, GPIO.IN) # GPIO 18 input ultrasonic sensor
 GPIO.setup(17, GPIO.OUT) # GPIO 17 output ultrasonic sensor
 
-GPIO.output (24,1)
-GPIO.output (22,1)
+#GPIO.output (24,1)
+#GPIO.output (22,1)
 tankDepth = 30
 
 
@@ -100,19 +100,19 @@ def ultrasonicSensor():
 
         if (GPIO.input (27)==1 and toggleSensor == 0): #input low active
             togglePump = 1
-            GPIO.output (24, 0)
+            GPIO.output (24, 1)
             time.sleep (0.3) # anti bouncing
         if (GPIO.input (27)==0 and togglePump == 1):
             togglePump = 0
-            GPIO.output(24, 1)
+            GPIO.output(24, 0)
             time.sleep (0.3) # anti bouncing
 
         if ((tankDepth-distance)<20 and togglePump == 0):
             toggleSensor = 1
-            GPIO.output (24, 0)
+            GPIO.output (24, 1)
         if ((tankDepth-distance)>20 and toggleSensor == 1):
             toggleSensor = 0
-            GPIO.output (24, 1)
+            GPIO.output (24, 0)
 
 #create two new threads
 tpumpLight = threading.Thread(target=pumpLight)
