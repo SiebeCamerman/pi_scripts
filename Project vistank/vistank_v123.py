@@ -20,14 +20,12 @@ GPIO.setup (25, GPIO.IN) # GPIO 25 input step motor
 
 
 def pumpLight():
-    #togglePump = 0
-    #toggleLight = 0
+    togglePump = 0
+    toggleLight = 0
 
-    #alreadyPressed = 1
+    alreadyPressed = 1
     while True:
         #relay's
-        toggleLight = 0
-        alreadyPressed = 1
         
         if (GPIO.input (27)==1): #input low active
             GPIO.output (24, 1)
