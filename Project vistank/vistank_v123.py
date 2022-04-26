@@ -16,8 +16,10 @@ GPIO.setup (23, GPIO.IN) # GPIO 23 input light
 GPIO.setup (24, GPIO.OUT) # GPIO 24 output pump
 GPIO.setup (22, GPIO.OUT) # GPIO 22 output light
 GPIO.setup (25, GPIO.IN) # GPIO 25 input step motor
+GPIO.setup(18, GPIO.IN) # GPIO 18 input ultrasonic sensor
+GPIO.setup(17, GPIO.OUT) # GPIO 17 output ultrasonic sensor
 
-
+tankDepth = 30
 
 def pumpLight():
     #togglePump = 0
@@ -77,13 +79,36 @@ def stepMotor():
         if (GPIO.input (25)==0): #input low active
             motorRechts()
 
+def ultrasonicSensor():
+    while True:
+        #ultrasonic sensor
+        GPIO.output(17, 1)
+        time.sleep(0.00001)
+        GPIO.output(17, 0)
+
+        while(GPIO.input(18) == 0):
+            pass
+
+        signalHigh = time.time()
+
+        while(GPIO.input(18) == 1):
+            pass
+
+        signalLow = time.time()
+        timePassed = signalLow - signalHigh
+        distance = 17000 * timePassed
+        print("Waterdiepte in cm: "+str(tankDepth-distance))
+        time.sleep(0.1)
+
 #create two new threads
 tpumpLight = threading.Thread(target=pumpLight)
 tstepMotor = threading.Thread(target=stepMotor)
+tultrasonicSensor = threading.Thread(target=ultrasonicSensor)
 
 #start the threads
 tpumpLight.start()
 tstepMotor.start()
+tultrasonicSensor.start()
 
 #loop until ctrl^C
 try:
