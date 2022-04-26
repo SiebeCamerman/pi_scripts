@@ -105,13 +105,13 @@ def ultrasonicSensor():
             toggleSensor = 0
             GPIO.output (24, 1)
 
-        if (GPIO.input (27)==1 and toggleSensor == 0): #input low active
+        if (GPIO.input (27)==0 and toggleSensor == 0): #input low active
             togglePump = 1
-            GPIO.output (24, 1)
+            GPIO.output (24, 0)
             time.sleep (0.3) # anti bouncing
-        if (GPIO.input (27)==0 and togglePump == 1):
+        if (GPIO.input (27)==1 and togglePump == 1):
             togglePump = 0
-            GPIO.output(24, 0)
+            GPIO.output(24, 1)
             time.sleep (0.3) # anti bouncing
 
         
