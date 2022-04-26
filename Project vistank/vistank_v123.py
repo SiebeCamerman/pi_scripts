@@ -99,6 +99,10 @@ def ultrasonicSensor():
         distance = 17000 * timePassed
         print("Waterdiepte in cm: "+str(tankDepth-distance))
         time.sleep(0.1)
+        if ((tankDepth-distance)<20):
+            GPIO.output (24, 1)
+        else:
+            GPIO.output (24, 0)
 
 #create two new threads
 tpumpLight = threading.Thread(target=pumpLight)
